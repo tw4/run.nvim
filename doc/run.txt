@@ -1,0 +1,51 @@
+*run.txt*   Filetype-scoped commands that run your project in a terminal
+
+==============================================================================
+CONTENTS                                                     *run-contents*
+
+    Intro ................................. |run-intro|
+    Setup .................................. |run-setup|
+    Default commands ....................... |run-defaults|
+    Config .................................. |run-config|
+
+==============================================================================
+INTRO                                                            *run-intro*
+
+Neovim's built-in Rust ftplugin defines buffer-local |:Cargo| / |:Crun| /
+|:Ctest| commands that run `cargo` in a terminal split whenever you edit a
+`.rs` file. run.nvim generalizes that mechanism to other stacks.
+
+==============================================================================
+SETUP                                                             *run-setup*
+
+>lua
+    require('run').setup {}
+<
+
+==============================================================================
+DEFAULT COMMANDS                                               *run-defaults*
+
+    python                 :Python {args}   :Ptest {args}
+    js/ts (+ jsx/tsx)       :Npm {args}     :Node {args}   :Ntest   :Ninstall
+    cs, fsharp              :Dotnet {args}  :Drun {args}   :Dtest {args}   :Dbuild {args}
+
+`:Python` and `:Node` run the current file when called with no arguments.
+
+==============================================================================
+CONFIG                                                            *run-config*
+
+>lua
+    require('run').setup {
+      split = 'noautocmd new',
+      languages = {
+        go = {
+          filetypes = { 'go' },
+          commands = {
+            { name = 'Go', cmd = 'go', default_args = 'run %:p' },
+          },
+        },
+      },
+    }
+<
+
+ vim:tw=78:ts=8:noet:ft=help:norl:
