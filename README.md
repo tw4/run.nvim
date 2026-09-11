@@ -9,6 +9,11 @@ run.nvim generalizes that same idea to other stacks: filetype-scoped
 commands that run the right tool in a terminal split, with sensible defaults
 and full config for adding your own languages.
 
+![run.nvim demo](doc/assets/demo.gif)
+
+`:Python` runs the current file, `:Ptest` runs `python3 -m pytest` — both in a
+terminal split, both buffer-local to Python buffers.
+
 ## Defaults
 
 | Filetype(s) | Commands |
